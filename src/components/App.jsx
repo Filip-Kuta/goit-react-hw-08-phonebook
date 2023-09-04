@@ -1,12 +1,10 @@
-import React from 'react';
-import ContactApp from './ContactApp';
+import { Route,Routes } from "react-router-dom/cjs/react-router-dom"
 
-function App() {
-  return (
-    <div className="App">
-      <ContactApp />
-    </div>
-  );
+
+export const App = () => {
+    return 
+<Routes>
+    <Route></Route>
+</Routes>
+    
 }
-
-export default App;
