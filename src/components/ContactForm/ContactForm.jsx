@@ -18,18 +18,18 @@ export default function ContactForm() {
      validationSchema: Yup.object({
        name: Yup.string()
          .matches(/^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/,
-           'Имя может состоять только из букв, апострофа, тире и пробелов.')
-         .notOneOf(contacts.map(contact => contact.name), "Такой контакт уже существует")
-         .required('Oбязательное поле'),
+           'Imię może składać się tylko z liter, apostrofu, myślnika i spacji.')
+         .notOneOf(contacts.map(contact => contact.name), 'Taki kontakt już istnieje.')
+         .required('Pole obowiązkowe.'),
        number: Yup.string()
-         .matches(/\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/, 'Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +')
-         .required('Oбязательное поле'),
+         .matches(/\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/, 'Numer telefonu powinien składać się z cyfr i może zawierać spacje, myślniki, nawiasy okrągłe, i może zaczynać się od +.')
+         .required('Pole wymagane'),
      }),
      onSubmit: (values, { setSubmitting, resetForm }) => {
-       dispatch(phoneBookOperations.addContact({ name: values.name, number: values.number })),
-         setSubmitting(false),
-         resetForm()
-     },
+      dispatch(phoneBookOperations.addContact({ name: values.name, number: values.number }));
+      setSubmitting(false);
+      resetForm();
+    },
    });
   const { handleSubmit, handleChange, isSubmitting, values, touched, errors } = formik;
   return (
