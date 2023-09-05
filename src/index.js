@@ -1,29 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from "react-router-dom";
 import { Provider } from 'react-redux';
-import store from 'components/store';
+import { PersistGate } from 'redux-persist/integration/react'
+import store from "./redux/store";
 import './index.css';
-import ContactApp from 'components/ContactApp';
-import { StrictMode } from 'react';
-import { BrowserRouter } from 'react-router-dom/cjs/react-router-dom.min';
-import {createRoot} from "react-dom/client"
-import { App } from 'components/App';
-
-// ReactDOM.render(
-//   <Provider store={store}>
-//     <ContactApp />
-//   </Provider>,
-//   document.getElementById('root')
-// );
+import App from '../src/components/App';
 
 
-const rootElement = document.getElementById("root");
-const root = createRoot(rootElement);
-
-root.render(
-  <StrictMode>
+ReactDOM.render(
+  <React.StrictMode>
+    <Provider store={store.store}>
+      <PersistGate loading={null} persistor={store.persistor}>
     <BrowserRouter>
-    <App/>
-    </BrowserRouter>
-  </StrictMode>
-)
+      <App />
+        </BrowserRouter>
+        </PersistGate>
+      </Provider>
+  </React.StrictMode>,
+  document.getElementById('root')
+);
