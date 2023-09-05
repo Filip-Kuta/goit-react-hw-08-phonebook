@@ -20,10 +20,11 @@ function RegisterForm() {
        password: Yup.string().required('No password provided.').min(8, 'Password is too short - should be 8 chars minimum.'),
      }),
      onSubmit: (values, { setSubmitting, resetForm }) => {
-       dispatch(authOperations.userRegistration({ name: values.name, email: values.email, password: values.password})),
-         setSubmitting(false),
-         resetForm()
-     },
+      dispatch(authOperations.userRegistration({ name: values.name, email: values.email, password: values.password }));
+      setSubmitting(false);
+      resetForm();
+    },
+    
    });
     const { handleSubmit, handleChange, isSubmitting, values, touched, errors } = formik;
   return (
